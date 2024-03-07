@@ -73,8 +73,3 @@ resource "aws_security_group" "allow_ssh_priv" {
 		Name = "${var.namespace}-allow_ssh_priv"
 	}
 }
-
-
-
-
-
