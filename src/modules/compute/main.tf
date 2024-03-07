@@ -79,7 +79,7 @@ provisioner "file" {
 // Configure the EC2 instance in private subnet
 
 resource "aws_instance" "ec2_private" {
-	ami = 
+	ami = data.aws_ami.amazon-linux-2.id
 	associate_public_ip_address = false
 	instance_type = "t2.micro"
 	key_name = var.key_name
