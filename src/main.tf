@@ -2,7 +2,7 @@ provider "aws" {
 	region = var.region
 }
 
-module "networking" {
+module "vpc" {
 	source = "./modules/vpc"
 	namespace = var.namespace
 }

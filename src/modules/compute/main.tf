@@ -22,60 +22,6 @@ tags = {
 	"Name" = "${var.namespace}-ec2-public"
 }
 
-# copy ssh key file to home dir
-
-provisioner "file" {
-	source = "./${var.key_name}.pem"
-	destination = "/home/ec2-user/${var.key_name}.pem"
-
-
-	connection {
-		type = "ssh"
-		user = "ec2-user"
-		private_key = file("${var.key_name}.pem")
-		host = self.public_ip
-	}	
-}
-
-provisioner "remote-exec" {
-	inline = ["chmod 400 ~/${var.key_name}.pem"]
-
-
-	connection {
-		type = "ssh"
-		user = "ec2-user"
-		private_key = file("${var.key_name}.pem")
-		host = self.public_ip
-	}	
-}
-
-
-# install nignx
-
-provisioner "file" {
-	source = "/Users/chandrakanth/nginx_install.sh"
-	destination = "/tmp/nginx_install.sh"
-
-	connection {
-		type = "ssh"
-		user = "ec2-user"
-		private_key = file("${var.key_name}.pem")
-		host = self.public_ip
-	}	
-}
-
-provisioner "file" {
-	source = "/Users/chandrakanth/nginx_install.sh"
-	destination = "/tmp/nginx_install.sh"
-
-	connection {
-		type = "ssh"
-		user = "ec2-user"
-		private_key = file("${var.key_name}.pem")
-		host = self.public_ip
-	}	
-}
-
 // Configure the EC2 instance in private subnet
 
 resource "aws_instance" "ec2_private" {
