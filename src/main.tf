@@ -1,28 +1,23 @@
-terraform {
-
-	required_providers {
-		aws = {
-			source = "hashicorp/aws"
-			version = "~> 5.0"
-		}
-	}
-	
+provider "aws" {
+	region = var.region
 }
 
-# Configure the AWS provider
+module "networking" {
+	source = "./modules/networking"
+	namespace = var.namespace
+}
 
-provider "aws"	{
-	region = "us-west-2"
-	profile = "sandbox"
-}	
- 
-# Create an EC2 instance
+module "ssh_key" {
+	source = "./modules.ssh-key"
+	namespace = var.namespace
+}
 
-resource "aws_instance" "new_server" {
-	ami = "ami-08f7912c15ca96832"
-	instance_type = "t2.micro"
-
-	tags = {
-		Name = "Web Server"
-	}
-}	
+module "compute" {
+	source = "./modules/compute"
+	namespace = var.namespace
+	vpc = module.networking.vpc
+	sg_public_id = module.networking.sg_public_id
+	sg_private_id = module.networking.sg_private_
+	id
+	key_name = module.ssh-key.key_name
+}
