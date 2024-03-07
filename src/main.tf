@@ -3,12 +3,12 @@ provider "aws" {
 }
 
 module "networking" {
-	source = "./modules/networking"
+	source = "./modules/vpc"
 	namespace = var.namespace
 }
 
 module "ssh_key" {
-	source = "./modules.ssh-key"
+	source = "./modules/ssh-key"
 	namespace = var.namespace
 }
 
