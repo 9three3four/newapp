@@ -14,6 +14,6 @@ variable "sg_public_id" {
 	type = any
 }
 
-variable = "sg_private_id" {
+variable "sg_private_id" {
 	type = any
 }
