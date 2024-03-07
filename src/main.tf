@@ -17,7 +17,6 @@ module "compute" {
 	namespace = var.namespace
 	vpc = module.networking.vpc
 	sg_public_id = module.networking.sg_public_id
-	sg_private_id = module.networking.sg_private_
-	id
+	sg_private_id = module.networking.sg_private_id
 	key_name = module.ssh-key.key_name
 }
